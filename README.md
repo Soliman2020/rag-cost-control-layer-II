@@ -503,9 +503,6 @@ MIT
 
 ---
 
-## Related
+## References
 
-**Same series — production layers for LLM systems:**
-
-- [RAG Is Blind to Time — I Built a Temporal Layer to Fix It](https://towardsdatascience.com/rag-is-blind-to-time-i-built-a-temporal-layer-to-fix-it-in-production/)
-- [Prompt Engineering Isn't Enough — I Built a Control Layer That Works](https://towardsdatascience.com/prompt-engineering-isnt-enough-i-built-a-control-layer-that-works-in-production/)
+- [**RAG Is Burning Money — I Built a Cost Control Layer to Fix It**](https://towardsdatascience.com/rag-is-burning-money-i-built-a-cost-control-layer-to-fix-it/)
