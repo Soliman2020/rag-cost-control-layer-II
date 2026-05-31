@@ -111,7 +111,6 @@ cp .copy_env .env
 **.copy_env template:**
 ```env
 OPENAI_API_KEY=your_api_key_here
-BASE_URL=https://api.openai.com/v1
 ```
 
 ---
