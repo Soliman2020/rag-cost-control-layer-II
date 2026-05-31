@@ -101,6 +101,19 @@ pip install -r requirements.txt
 
 **Python 3.10+ required.**
 
+**Setup Environment:**
+```bash
+# Copy the template environment file and fill in your values
+cp .copy_env .env
+# Edit .env with your actual API key
+```
+
+**.copy_env template:**
+```env
+OPENAI_API_KEY=your_api_key_here
+BASE_URL=https://api.openai.com/v1
+```
+
 ---
 
 ## Quick Start
