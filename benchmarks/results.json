@@ -1,1 +1,69 @@
-
+{
+  "semantic_cache": {
+    "total_requests": 200,
+    "cache_hits": 197,
+    "cache_misses": 3,
+    "hit_rate_pct": 98.5,
+    "total_cost_saved_usd": 0.788,
+    "total_latency_saved_ms": 137900.0,
+    "avg_hit_latency_ms": 1.66,
+    "avg_miss_latency_ms": 1.66,
+    "p95_hit_latency_ms": 1.85
+  },
+  "query_router": {
+    "total_queries": 500,
+    "simple_pct": 81.0,
+    "standard_pct": 16.4,
+    "complex_pct": 2.6,
+    "total_cost_usd": 0.3359,
+    "total_saved_usd": 3.4141,
+    "avg_cost_per_query": 0.000672,
+    "total_routing_ms": 5.4,
+    "avg_routing_latency_ms": 0.011
+  },
+  "scale_comparison": [
+    {
+      "scale": "100 req/day",
+      "naive_per_day_usd": 1.2,
+      "optimized_per_day_usd": 0.18,
+      "saving_per_day_usd": 1.02,
+      "saving_pct": 84.6,
+      "naive_per_month_usd": 36.0,
+      "optimized_per_month_usd": 5.54,
+      "saving_per_month_usd": 30.46
+    },
+    {
+      "scale": "1,000 req/day",
+      "naive_per_day_usd": 12.0,
+      "optimized_per_day_usd": 1.71,
+      "saving_per_day_usd": 10.29,
+      "saving_pct": 85.7,
+      "naive_per_month_usd": 360.0,
+      "optimized_per_month_usd": 51.33,
+      "saving_per_month_usd": 308.67
+    },
+    {
+      "scale": "10,000 req/day",
+      "naive_per_day_usd": 120.0,
+      "optimized_per_day_usd": 17.0,
+      "saving_per_day_usd": 103.0,
+      "saving_pct": 85.8,
+      "naive_per_month_usd": 3600.0,
+      "optimized_per_month_usd": 509.92,
+      "saving_per_month_usd": 3090.08
+    }
+  ],
+  "circuit_breaker": {
+    "strict_threshold": {
+      "allowed": 0,
+      "downgraded": 0,
+      "blocked": 10
+    },
+    "sensible_threshold": {
+      "allowed": 10,
+      "downgraded": 0,
+      "blocked": 0
+    },
+    "recommendation": "Set hourly_limit to 2-3x your expected peak \u2014 not your average. Use downgrade_on_breach=True to degrade gracefully instead of blocking users."
+  }
+}

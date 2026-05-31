@@ -20,9 +20,22 @@ import threading
 import time
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, Protocol, runtime_checkable
 
 logger = logging.getLogger(__name__)
+
+
+@runtime_checkable
+class EmbedderProtocol(Protocol):
+    """Protocol for custom embedders."""
+
+    def fit(self, texts: list[str]) -> None:
+        """Build vocabulary from texts."""
+        ...
+
+    def embed(self, text: str) -> list[float]:
+        """Convert text to embedding vector."""
+        ...
 
 
 # ---------------------------------------------------------------------------
@@ -173,13 +186,14 @@ class SemanticCache:
         ttl_seconds:            Optional[float] = None,
         cost_per_llm_call_usd:  float         = 0.004,
         avg_llm_latency_ms:     float         = 700.0,
+        embedder:               Optional[EmbedderProtocol] = None,
     ) -> None:
         self.threshold             = threshold
         self.max_size              = max_size
         self.ttl_seconds           = ttl_seconds
         self.cost_per_llm_call_usd = cost_per_llm_call_usd
         self.avg_llm_latency_ms    = avg_llm_latency_ms
-        self._embedder             = _TFIDFEmbedder()
+        self._embedder             = embedder if embedder else _TFIDFEmbedder()
         self._entries: list[CacheEntry] = []
         self.stats                 = CacheStats()
         self._lock                 = threading.RLock()
@@ -226,7 +240,9 @@ class SemanticCache:
         with self._lock:
             if len(self._entries) >= self.max_size:
                 self._evict_lru()
-            self._embedder.fit([query])   # update vocab before embedding
+            # Only fit TF-IDF embedder; API embedders don't need vocab updates
+            if isinstance(self._embedder, _TFIDFEmbedder):
+                self._embedder.fit([query])
             self._entries.append(CacheEntry(
                 query=query,
                 response=response,
