@@ -83,7 +83,7 @@ At 10,000 requests/day, naive RAG costs **$120/day**. With this cost control lay
 
 ### Basic (No Dependencies)
 ```bash
-git clone https://github.com/Emmimal/rag-cost-control-layer.git
+git clone https://github.com/Soliman2020/rag-cost-control-layer-II.git
 cd rag-cost-control-layer/rag-cost-control-layer
 python demo/demo.py  # Works immediately with standard library only
 ```
