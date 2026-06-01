@@ -373,6 +373,10 @@ cp .copy_env .env
 
 # Launch Jupyter
 jupyter notebook demo/all_three_demos.ipynb
+
+# Or open in Google Colab directly:
+# https://colab.research.google.com/github/Soliman2020/rag-cost-control-layer-II/blob/main/demo/all_three_demos.ipynb
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Soliman2020/rag-cost-control-layer-II/blob/main/demo/all_three_demos.ipynb)
 ```
 
 The notebook includes all three demos in one file:
