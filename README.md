@@ -483,8 +483,6 @@ rag-cost-control-layer/
 │   ├── demo.py               # Original demo (no deps)
 │   ├── openai_demo.py       # OpenAI client demo
 │   └── rag_demo.py           # RAG pipeline demo
-│   ├── openai_demo.py       # OpenAI client demo
-│   └── rag_demo.py           # RAG pipeline demo
 ├── benchmarks/
 │   └── run_benchmarks.py    # Performance benchmarks
 └── requirements.txt          # Dependencies
