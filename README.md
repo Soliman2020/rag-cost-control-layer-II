@@ -30,11 +30,11 @@ At 10,000 requests/day, naive RAG costs **$120/day**. With this cost control lay
 ├──────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │  Incoming Query                                                              │
-│        │                                                                    │
+│        │                                                                     │
 │        ▼                                                                    │
 │  ┌───────────────────┐                                                       │
-│  │  Semantic Cache   │ ◄── Check for cached responses                       │
-│  │  (TF-IDF / OpenAI)│     Returns in ~4ms at $0 cost                       │
+│  │  Semantic Cache   │ ◄── Check for cached responses                        │
+│  │  (TF-IDF / OpenAI)│     Returns in ~4ms at $0 cost                        │
 │  └─────────┬─────────┘                                                       │
 │            │ HIT                                                             │
 │            ▼                                                                 │
@@ -42,21 +42,21 @@ At 10,000 requests/day, naive RAG costs **$120/day**. With this cost control lay
 │            │ MISS                                                            │
 │            ▼                                                                 │
 │  ┌───────────────────┐                                                       │
-│  │  Query Router     │ ◄── Classify query complexity                        │
-│  │  3-signal scoring│     Route to cheapest model tier                     │
+│  │  Query Router     │ ◄── Classify query complexity                         │
+│  │  3-signal scoring│     Route to cheapest model tier                       │
 │  └─────────┬─────────┘                                                       │
 │            │                                                                 │
 │            ▼                                                                 │
-│  ┌───────────────────┐   SIMPLE ──► gpt-4o-mini ($0.000165/1K)              │
-│  │  Model Selection │   STANDARD ► gpt-4o       ($0.005/1K)                │
-│  │  Tier Routing    │   COMPLEX ──► gpt-4       ($0.03/1K)                  │
-│  └─────────┬─────────┘                                                       │
-│            │                                                                 │
+│  ┌───────────────────┐   SIMPLE ──► gpt-4o-mini ($0.000165/1K)               │
+│  │  Model Selection │   STANDARD ► gpt-4o       ($0.005/1K)                  │
+│  │  Tier Routing    │   COMPLEX ──► gpt-4       ($0.03/1K)                   │
+│  └─────────┬─────────┘                                                        │
+│            │                                                                  │
 │            ▼                                                                 │
 │  ┌───────────────────┐                                                       │
 │  │  Token Budget    │ ◄── Allocate tokens by priority                        │
-│  │  + CostLedger   │     Track hourly/daily spend                          │
-│  │  + CircuitBreaker│ ◄── Prevent runaway costs                            │
+│  │  + CostLedger   │     Track hourly/daily spend                            │
+│  │  + CircuitBreaker│ ◄── Prevent runaway costs                              │
 │  └─────────┬─────────┘                                                       │
 │            │                                                                 │
 │            ▼                                                                 │
@@ -363,12 +363,31 @@ CLOSED or OPEN
 
 ## Running the Demos
 
-### Original Demo (No Dependencies)
+### Option 1: Jupyter Notebook (All-in-One)
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy environment file
+cp .copy_env .env
+
+# Launch Jupyter
+jupyter notebook demo/all_three_demos.ipynb
+```
+
+The notebook includes all three demos in one file:
+- Demo 1: Core Components (no dependencies)
+- Demo 2: CostAwareClient (requires OpenAI)
+- Demo 3: Complete RAG Pipeline (requires OpenAI)
+
+### Option 2: Run Individual Demos
+
+#### Original Demo (No Dependencies)
 ```bash
 python demo/demo.py
 ```
 
-### OpenAI Client Demo
+#### OpenAI Client Demo
 ```bash
 # Set your API key
 export OPENAI_API_KEY="sk-..."
@@ -376,7 +395,7 @@ export OPENAI_API_KEY="sk-..."
 python demo/openai_demo.py
 ```
 
-### RAG Pipeline Demo
+#### RAG Pipeline Demo
 ```bash
 # Set your API key
 export OPENAI_API_KEY="sk-..."
@@ -456,8 +475,9 @@ rag-cost-control-layer/
 ├── token_counter/
 │   └── counter.py           # Accurate token counting (tiktoken)
 ├── demo/
-│   ├── demo.py              # Original demo (no deps)
-│   ├── openai_demo.py        # OpenAI client demo
+│   ├── all_three_demos.ipynb # Jupyter notebook (all demos in one)
+│   ├── demo.py               # Original demo (no deps)
+│   ├── openai_demo.py       # OpenAI client demo
 │   └── rag_demo.py           # RAG pipeline demo
 ├── benchmarks/
 │   └── run_benchmarks.py    # Performance benchmarks
