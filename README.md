@@ -376,8 +376,8 @@ jupyter notebook demo/all_three_demos.ipynb
 
 # Or open in Google Colab directly:
 # https://colab.research.google.com/github/Soliman2020/rag-cost-control-layer-II/blob/main/demo/all_three_demos.ipynb
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Soliman2020/rag-cost-control-layer-II/blob/main/demo/all_three_demos.ipynb)
 ```
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Soliman2020/rag-cost-control-layer-II/blob/main/demo/all_three_demos.ipynb)
 
 The notebook includes all three demos in one file:
 - Demo 1: Core Components (no dependencies)
@@ -481,6 +481,8 @@ rag-cost-control-layer/
 ├── demo/
 │   ├── all_three_demos.ipynb # Jupyter notebook (all demos in one)
 │   ├── demo.py               # Original demo (no deps)
+│   ├── openai_demo.py       # OpenAI client demo
+│   └── rag_demo.py           # RAG pipeline demo
 │   ├── openai_demo.py       # OpenAI client demo
 │   └── rag_demo.py           # RAG pipeline demo
 ├── benchmarks/
